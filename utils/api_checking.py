@@ -43,3 +43,9 @@ class Checking:
             print("Слово " + search_word + " присутствует.")
         else:
             print("Внимание! Слово " + search_word + " отсутствует.")
+
+    @staticmethod
+    def check_json_body(response: Response, body: json, ):
+        check = response.json()
+        assert check == body
+        print('Успешно! Тело запроса соответствует эталону')
