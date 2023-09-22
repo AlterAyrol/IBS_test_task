@@ -1,4 +1,3 @@
-import requests
 from utils.api import ReqresAPI
 from utils.api_checking import Checking
 
