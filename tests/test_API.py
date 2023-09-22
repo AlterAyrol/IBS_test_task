@@ -1,4 +1,3 @@
-import requests
 from utils.api import ReqresAPI
 from utils.api_checking import Checking
 
@@ -310,7 +309,6 @@ class TestAPI:
         result_get = ReqresAPI.loging(body_request)
         Checking.check_status_code(result_get, 400)
         Checking.check_json_body(result_get, body=body_response)
-
 
     def test_delayed_response(self):
         body = {
