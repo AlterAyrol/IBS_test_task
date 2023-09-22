@@ -14,7 +14,7 @@ def load_env():
     load_dotenv()
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture()
 def web_browser():
     # driver_options = webdriver.ChromeOptions()
     # driver_options.add_argument('--headless')
