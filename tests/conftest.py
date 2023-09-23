@@ -19,9 +19,9 @@ def web_browser():
     # driver_options = webdriver.ChromeOptions()
     # driver_options.add_argument('--headless')
     # browser.config.driver_options = driver_options
-    browser.config.window_width = 1400
-    browser.config.window_height = 1600
-    browser.config.base_url = 'https://demoqa.com'
+    browser.config.window_width = 1600
+    browser.config.window_height = 1200
+    browser.config.base_url = 'https://reqres.in'
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
@@ -42,12 +42,14 @@ def web_browser():
 
     browser.config.driver = driver
 
-    yield
+    driver = browser.open('/')
 
-    attach.add_html(browser)
-    attach.add_screenshot(browser)
-    attach.add_logs(browser)
-    attach.add_video(browser)
+    yield driver
+
+    # attach.add_html(browser)
+    # attach.add_screenshot(browser)
+    # attach.add_logs(browser)
+    # attach.add_video(browser)
 
     browser.quit()
 
