@@ -1,9 +1,17 @@
 from utils.api import ReqresAPI
 from utils.api_checking import Checking
+import allure
+from allure_commons.types import Severity
 
 
+@allure.tag('API')
+@allure.severity(Severity.CRITICAL)
+@allure.label("owner", "AlterAyrol")
+@allure.epic('Тестирование API на главной странице')
 class TestAPI:
 
+    @allure.feature('API get list users')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду get у запроса list users")
     def test_get_list_users(self):
         body = {
             "page": 2,
@@ -63,6 +71,8 @@ class TestAPI:
         Checking.check_status_code(result_get, 200)
         Checking.check_json_body(result_get, body=body)
 
+    @allure.feature('API get single user')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду get у запроса single user")
     def test_get_single_user(self):
         body = {
             "data": {
@@ -81,12 +91,17 @@ class TestAPI:
         Checking.check_status_code(result_get, 200)
         Checking.check_json_body(result_get, body=body)
 
+    @allure.feature('Негативный API get single user без пользователя')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду get у запроса single user "
+                  "при отсутствии запрашиваемого пользователя")
     def test_get_single_user_not_found(self):
         body = {}
         result_get = ReqresAPI.get_simple_user(23)
         Checking.check_status_code(result_get, 404)
         Checking.check_json_body(result_get, body=body)
 
+    @allure.feature('API get list <resource>')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду get у запроса list <resource>")
     def test_get_list_unknown(self):
         body = {
     "page": 1,
@@ -146,6 +161,8 @@ class TestAPI:
         Checking.check_status_code(result_get, 200)
         Checking.check_json_body(result_get, body=body)
 
+    @allure.feature('API get single <resource>')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду get у запроса single <resource>")
     def test_get_single_resource(self):
         body = {
     "data": {
@@ -164,12 +181,17 @@ class TestAPI:
         Checking.check_status_code(result_get, 200)
         Checking.check_json_body(result_get, body=body)
 
+    @allure.feature('Негативный API get single <resource> на отсутствующий ресурс')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду get у запроса single <resource> "
+                  "при отсутствии запрашиваемого ресурса")
     def test_get_single_resource_not_found(self):
         body = {}
         result_get = ReqresAPI.get_single_unknown(23)
         Checking.check_status_code(result_get, 404)
         Checking.check_json_body(result_get, body=body)
 
+    @allure.feature('API post new user')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду post у запроса create")
     def test_post_new_user(self):
         body_request = {
     "name": "morpheus",
@@ -180,6 +202,8 @@ class TestAPI:
         Checking.check_status_code(result_get, 201)
         Checking.check_json_key(result_get, expected_value=body_response)
 
+    @allure.feature('API put user info')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду put у запроса update")
     def test_put_update_user(self):
         body_request = {
     "name": "morpheus",
@@ -190,6 +214,8 @@ class TestAPI:
         Checking.check_status_code(result_get, 200)
         Checking.check_json_key(result_get, expected_value=body_response)
 
+    @allure.feature('API patch user info')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду patch у запроса update")
     def test_patch_update_user(self):
         body_request = {
             "name": "morpheus",
@@ -200,10 +226,14 @@ class TestAPI:
         Checking.check_status_code(result_get, 200)
         Checking.check_json_key(result_get, expected_value=body_response)
 
+    @allure.feature('API delete user')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду delete у запроса delete")
     def test_delete_user(self):
         result_get = ReqresAPI.delete_user(2)
         Checking.check_status_code(result_get, 204)
 
+    @allure.feature('API post register')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду post у запроса register successful")
     def test_register_successful(self):
         body_request = {
     "email": "eve.holt@reqres.in",
@@ -217,6 +247,9 @@ class TestAPI:
         Checking.check_status_code(result_get, 200)
         Checking.check_json_body(result_get, body=body_response)
 
+    @allure.feature('Негативный API post register без отправки пароля')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду post у запроса "
+                  "register unsuccessful без указания пароля в теле запроса")
     def test_register_unsuccessful(self):
         body_request = {
     "email": "sydney@fife"
@@ -228,6 +261,8 @@ class TestAPI:
         Checking.check_status_code(result_get, 400)
         Checking.check_json_body(result_get, body=body_response)
 
+    @allure.feature('API post login')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду post у запроса login successful")
     def test_login_successful(self):
         body_request = {
     "email": "eve.holt@reqres.in",
@@ -240,6 +275,9 @@ class TestAPI:
         Checking.check_status_code(result_get, 200)
         Checking.check_json_body(result_get, body=body_response)
 
+    @allure.feature('Негативный API post login без отправки пароля')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду post у запроса"
+                  " login unsuccessful  без указания пароля в теле запроса")
     def test_login_unsuccessful(self):
         body_request = {
     "email": "peter@klaven"
@@ -251,6 +289,9 @@ class TestAPI:
         Checking.check_status_code(result_get, 400)
         Checking.check_json_body(result_get, body=body_response)
 
+    @allure.feature('API get delayed response')
+    @allure.story("Идёт проверка статус кода и тела ответа на команду get у запроса delayed response"
+                  " с указанием на задержку в 3 секунды на отображаемое тело ответа")
     def test_delayed_response(self):
         body = {
     "page": 1,
