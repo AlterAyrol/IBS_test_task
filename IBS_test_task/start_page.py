@@ -7,7 +7,7 @@ class StartPage:
 
     # Locators
     request_link_button_locator = '//div[@class="request"]//span'
-    list_user_button_locator = '//li[@data-id="users"]'
+    list_users_button_locator = '//li[@data-id="users"]'
     single_user_button_locator = '//li[@data-id="users-single"]'
     users_single_not_found_button_locator = '//li[@data-id="users-single-not-found"]'
     unknown_list_button_locator = '//li[@data-id="unknown"]'
@@ -41,7 +41,7 @@ class StartPage:
 
     @allure.step('Нажимаю на кнопку "List users"')
     def list_user_button_click(self, browser):
-        browser.element(self.list_user_button_locator).click()
+        browser.element(self.list_users_button_locator).click()
 
     @allure.step('Нажимаю на кнопку "Single user"')
     def single_user_button_click(self, browser):
