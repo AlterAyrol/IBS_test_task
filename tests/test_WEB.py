@@ -13,7 +13,7 @@ class TestWEB:
     @allure.feature('WEB check list users')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'list users'. После переход по ссылке из поля 'Request'")
-    def test_list_users_button(self, web_browser):
+    def test_list_users_button(self, web_browser, window_size):
         body = '''{
     "page": 2,
     "per_page": 6,
@@ -81,7 +81,7 @@ class TestWEB:
     @allure.feature('WEB check single user')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'single user'. После переход по ссылке из поля 'Request'")
-    def test_get_single_user(self, web_browser):
+    def test_get_single_user(self, web_browser, window_size):
         body = '''{
     "data": {
         "id": 2,
@@ -108,7 +108,7 @@ class TestWEB:
     @allure.feature('WEB check single user not found')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'single user not found'. После переход по ссылке из поля 'Request'")
-    def test_single_user_not_found_button(self, web_browser):
+    def test_single_user_not_found_button(self, web_browser, window_size):
         body = '{}'
 
         browser = web_browser
@@ -122,7 +122,7 @@ class TestWEB:
     @allure.feature('WEB check list <resource>')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'list <resource>'. После переход по ссылке из поля 'Request'")
-    def test_get_list_unknown(self, web_browser):
+    def test_get_list_unknown(self, web_browser, window_size):
         body = '''{
     "page": 1,
     "per_page": 6,
@@ -189,7 +189,7 @@ class TestWEB:
     @allure.feature('WEB check single <resource>')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'single <resource>'. После переход по ссылке из поля 'Request'")
-    def test_get_single_resource(self, web_browser):
+    def test_get_single_resource(self, web_browser, window_size):
         body = '''{
     "data": {
         "id": 2,
@@ -215,7 +215,7 @@ class TestWEB:
     @allure.feature('WEB check single <resource> not found')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'single <resource> not found'. После переход по ссылке из поля 'Request'")
-    def test_get_single_resource_not_found(self, web_browser):
+    def test_get_single_resource_not_found(self, web_browser, window_size):
         body = '{}'
 
         browser = web_browser
@@ -229,7 +229,7 @@ class TestWEB:
     @allure.feature('WEB check create')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'create'. После переход по ссылке из поля 'Request'")
-    def test_post_new_user(self, web_browser):
+    def test_post_new_user(self, web_browser, window_size):
         body = '''"name": "morpheus",
     "job": "leader",'''
         create_at = '"createdAt":'
@@ -246,7 +246,7 @@ class TestWEB:
     @allure.feature('WEB check update (put)')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'update (put)'. После переход по ссылке из поля 'Request'")
-    def test_put_update_user(self, web_browser):
+    def test_put_update_user(self, web_browser, window_size):
         body = '''    "name": "morpheus",
     "job": "zion resident",'''
         update_at = '"updatedAt":'
@@ -263,7 +263,7 @@ class TestWEB:
     @allure.feature('WEB check update (patch)')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'update (patch)'. После переход по ссылке из поля 'Request'")
-    def test_patch_update_user(self, web_browser):
+    def test_patch_update_user(self, web_browser, window_size):
         body = '''    "name": "morpheus",
     "job": "zion resident",'''
         update_at = '"updatedAt":'
@@ -281,7 +281,7 @@ class TestWEB:
     @allure.feature('WEB check delete')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'delete'. После переход по ссылке из поля 'Request'")
-    def test_delete_user(self, web_browser):
+    def test_delete_user(self, web_browser, window_size):
         body = ''
 
         browser = web_browser
@@ -295,7 +295,7 @@ class TestWEB:
     @allure.feature('WEB check register successful')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'register successful'. После переход по ссылке из поля 'Request'")
-    def test_register_successful(self, web_browser):
+    def test_register_successful(self, web_browser, window_size):
         body = '''{
     "id": 4,
     "token": '''
@@ -311,7 +311,7 @@ class TestWEB:
     @allure.feature('WEB check register unsuccessful')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'register unsuccessful'. После переход по ссылке из поля 'Request'")
-    def test_register_unsuccessful(self, web_browser):
+    def test_register_unsuccessful(self, web_browser, window_size):
         body = '''{
     "error": "Missing password"
 }'''
@@ -327,7 +327,7 @@ class TestWEB:
     @allure.feature('WEB check login successful')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'login successful'. После переход по ссылке из поля 'Request'")
-    def test_login_successful(self, web_browser):
+    def test_login_successful(self, web_browser, window_size):
         body = '''{
     "token": "QpwL5tke4Pnpja7X4"
 }'''
@@ -343,7 +343,7 @@ class TestWEB:
     @allure.feature('WEB check login unsuccessful')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'login unsuccessful'. После переход по ссылке из поля 'Request'")
-    def test_login_unsuccessful(self, web_browser):
+    def test_login_unsuccessful(self, web_browser, window_size):
         body = '''{
     "error": "Missing password"
 }'''
@@ -359,7 +359,7 @@ class TestWEB:
     @allure.feature('WEB check delayed response')
     @allure.story("Идёт проверка указанного статус кода и тела ответа в полях эталона при нажатии кнопки"
                   " 'delayed response'. После переход по ссылке из поля 'Request'")
-    def test_delayed_response(self, web_browser):
+    def test_delayed_response(self, web_browser, window_size):
         body = '''{
     "page": 1,
     "per_page": 6,
